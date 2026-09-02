@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Patient — VITERA</title>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <style>
+    .member-row {
+      margin-top: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--vt-border);
+    }
+    .member-name-row {
+      margin-bottom: 8px;
+    }
+    .member-name-row label { margin-top: 0; }
+    .member-details-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 8px;
+      align-items: end;
+    }
+    .member-details-row label { margin-top: 0; }
+    .member-details-row input,
+    .member-details-row select { margin: 0; }
+    .member-remove {
+      background: transparent;
+      border: 1px solid var(--vt-border);
+      color: var(--vt-danger);
+      border-radius: var(--vt-radius-sm);
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 700;
+      height: 42px;
+    }
+    @media (max-width: 640px) {
+      .member-details-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="VITERA">
+      <span class="wordmark">VITERA<span class="dot">.</span></span>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-text" href="dashboard.html">&larr; Dashboard</a>
+      <button class="btn btn-text" id="logout-btn">Log out</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h1>Register Patient</h1>
+      <p class="subtitle">Register a single walk-in, or a whole family in one go — add more members below if needed.</p>
+
+      <label for="slot-select">Slot</label>
+      <select id="slot-select">
+        <option value="">Loading slots…</option>
+      </select>
+
+      <label for="email">Contact email (optional)</label>
+      <input type="email" id="email" placeholder="family@example.com">
+
+      <div class="row">
+        <div>
+          <label for="flat_number">Flat / house number</label>
+          <input type="text" id="flat_number">
+        </div>
+        <div>
+          <label for="service_interest">Service interest</label>
+          <input type="text" id="service_interest" placeholder="e.g. Lifestyle / nutrition guidance">
+        </div>
+      </div>
+
+      <h3 style="margin-top:18px;">Members</h3>
+      <div id="member-rows"></div>
+      <button type="button" class="btn btn-outline" id="add-member-btn" style="margin-top:10px;">+ Add another member</button>
+
+      <button class="btn btn-primary btn-block" id="register-btn" style="margin-top:22px;">
+        Register
+      </button>
+
+      <div id="result-block" class="hidden" style="margin-top:18px;"></div>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/register.js"></script>
+</body>
+</html>

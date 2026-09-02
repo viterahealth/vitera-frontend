@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultation — VITERA</title>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <style>
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .summary-item {
+      background: var(--vt-bg);
+      border-radius: var(--vt-radius-sm);
+      padding: 8px 12px;
+    }
+    .summary-item .label {
+      font-size: 0.72rem;
+      color: var(--vt-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .summary-item .value {
+      font-size: 0.95rem;
+      color: var(--vt-text);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .summary-note {
+      font-size: 0.85rem;
+      color: var(--vt-muted);
+      margin-top: 8px;
+    }
+    .rx-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr auto;
+      gap: 8px;
+      align-items: end;
+      margin-top: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--vt-border);
+    }
+    .rx-row input { margin: 0; }
+    .rx-remove {
+      background: transparent;
+      border: 1px solid var(--vt-border);
+      color: var(--vt-danger);
+      border-radius: var(--vt-radius-sm);
+      padding: 10px 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .rx-existing {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--vt-border);
+      font-size: 0.92rem;
+    }
+    .rx-existing .rx-name { font-weight: 600; }
+    .rx-existing .rx-detail { color: var(--vt-muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="VITERA">
+      <span class="wordmark">VITERA<span class="dot">.</span></span>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-text" href="dashboard.html">&larr; Dashboard</a>
+      <button class="btn btn-text" id="logout-btn">Log out</button>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="card">
+      <h1>Consultation</h1>
+      <p class="subtitle">Search for a patient to review their visit and record a diagnosis.</p>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search name, phone, or code…">
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+
+    <div id="patient-section" class="hidden">
+
+      <div class="card">
+        <div class="patient-header">
+          <div>
+            <h2 id="p-name" style="color:var(--vt-text); margin-bottom:2px;"></h2>
+            <div class="code" id="p-meta"></div>
+          </div>
+          <span class="status-pill" id="p-status"></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Vitals</h2>
+        <div id="vitals-summary" class="summary-note">Loading…</div>
+      </div>
+
+      <div class="card">
+        <h2>Medical History</h2>
+        <div id="history-summary" class="summary-note">Loading…</div>
+      </div>
+
+      <div class="card">
+        <h2 id="consult-heading">Consultation</h2>
+
+        <label for="chief_complaint">Chief complaint</label>
+        <textarea id="chief_complaint"></textarea>
+
+        <label for="clinical_observations">Clinical observations</label>
+        <textarea id="clinical_observations"></textarea>
+
+        <label for="diagnosis">Diagnosis</label>
+        <textarea id="diagnosis"></textarea>
+
+        <label for="doctor_notes">Doctor's notes</label>
+        <textarea id="doctor_notes"></textarea>
+
+        <label for="recommendations">Recommendations</label>
+        <textarea id="recommendations"></textarea>
+
+        <!-- shown only when creating a brand-new consultation -->
+        <div id="new-rx-block" class="hidden">
+          <h3 style="margin-top:18px;">Prescriptions</h3>
+          <div id="new-rx-rows"></div>
+          <button type="button" class="btn btn-outline" id="add-rx-row-btn" style="margin-top:10px;">+ Add medicine</button>
+        </div>
+
+        <!-- shown only when a consultation already exists -->
+        <div id="existing-rx-block" class="hidden">
+          <h3 style="margin-top:18px;">Prescriptions</h3>
+          <div id="existing-rx-list"></div>
+
+          <div class="rx-row" style="border-bottom:none; margin-top:14px;">
+            <div><label style="margin-top:0;">Medicine</label><input type="text" id="add-rx-name"></div>
+            <div><label style="margin-top:0;">Dosage</label><input type="text" id="add-rx-dosage"></div>
+            <div><label style="margin-top:0;">Frequency</label><input type="text" id="add-rx-frequency"></div>
+            <div><label style="margin-top:0;">Duration</label><input type="text" id="add-rx-duration"></div>
+            <button type="button" class="btn btn-outline" id="add-rx-btn">Add</button>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-block" id="save-consult-btn" style="margin-top:22px;">
+          Save Consultation
+        </button>
+
+        <!-- only shown once a consultation already exists (mode === "update") -->
+        <button class="btn btn-outline btn-block hidden" id="download-pdf-btn" style="margin-top:10px;">
+          Download Prescription PDF
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="module" src="assets/js/consultation.js"></script>
+</body>
+</html>

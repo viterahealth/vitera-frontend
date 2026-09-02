@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Detail — VITERA</title>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <style>
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .summary-item {
+      background: var(--vt-bg);
+      border-radius: var(--vt-radius-sm);
+      padding: 8px 12px;
+    }
+    .summary-item .label {
+      font-size: 0.72rem;
+      color: var(--vt-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .summary-item .value {
+      font-size: 0.95rem;
+      color: var(--vt-text);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .visit-card {
+      margin-top: 14px;
+    }
+    .visit-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="VITERA">
+      <span class="wordmark">VITERA<span class="dot">.</span></span>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-text" href="dashboard.html">&larr; Dashboard</a>
+      <button class="btn btn-text" id="logout-btn">Log out</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card" id="patient-summary-card">
+      <p class="subtitle">Loading patient…</p>
+    </div>
+
+    <div id="visits-container"></div>
+  </div>
+
+  <script type="module" src="assets/js/patient-detail.js"></script>
+</body>
+</html>

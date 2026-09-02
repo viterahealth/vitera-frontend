@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in — VITERA</title>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <style>
+    .login-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, var(--vt-green-900), var(--vt-green-700) 60%, var(--vt-green-500));
+    }
+    .login-card {
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+    }
+    .login-card img {
+      height: 64px;
+      margin-bottom: 6px;
+    }
+    .login-card .wordmark {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--vt-navy-900);
+      letter-spacing: 0.05em;
+    }
+    .login-card .tagline {
+      color: var(--vt-green-700);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .login-card form {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="card login-card">
+      <img src="assets/images/logo.png" alt="VITERA">
+      <div class="tagline">A New Era of Preventive Healthcare</div>
+
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input type="email" id="email" required autocomplete="username" autofocus>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required autocomplete="current-password">
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:22px;">Log in</button>
+        <div id="login-error" class="error-msg hidden"></div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/login.js"></script>
+</body>
+</html>

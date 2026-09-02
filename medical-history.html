@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical History — VITERA</title>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <style>
+    details.section {
+      border: 1px solid var(--vt-border);
+      border-radius: var(--vt-radius-sm);
+      margin-top: 14px;
+      overflow: hidden;
+    }
+    details.section > summary {
+      cursor: pointer;
+      padding: 12px 14px;
+      background: var(--vt-green-100);
+      color: var(--vt-green-700);
+      font-weight: 600;
+      font-size: 0.95rem;
+      list-style: none;
+    }
+    details.section > summary::-webkit-details-marker { display: none; }
+    details.section > summary::before { content: "▸ "; }
+    details.section[open] > summary::before { content: "▾ "; }
+    details.section .section-body { padding: 4px 16px 16px; }
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 6px 14px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="VITERA">
+      <span class="wordmark">VITERA<span class="dot">.</span></span>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-text" href="dashboard.html">&larr; Dashboard</a>
+      <button class="btn btn-text" id="logout-btn">Log out</button>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="card">
+      <h1>Medical History</h1>
+      <p class="subtitle">Search for a patient to record or update their history.</p>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search name, phone, or code…">
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+
+    <div class="card hidden" id="form-card">
+      <div class="patient-header">
+        <div>
+          <h2 id="p-name" style="color:var(--vt-text); margin-bottom:2px;"></h2>
+          <div class="code" id="p-meta"></div>
+        </div>
+        <span class="status-pill" id="p-status"></span>
+      </div>
+
+      <form id="history-form">
+
+        <label for="chief_complaint">Chief complaint</label>
+        <textarea id="chief_complaint" placeholder="What brought them in today"></textarea>
+
+        <h3 style="margin-top:18px;">Known conditions</h3>
+        <div class="checkbox-grid">
+          <div class="checkbox-row"><input type="checkbox" id="has_diabetes"><label for="has_diabetes">Diabetes</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="has_hypertension"><label for="has_hypertension">Hypertension</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="has_tb"><label for="has_tb">TB</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="has_asthma_copd"><label for="has_asthma_copd">Asthma/COPD</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="has_cardiac_disease"><label for="has_cardiac_disease">Cardiac disease</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="has_renal_disease"><label for="has_renal_disease">Renal disease</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="has_liver_disease"><label for="has_liver_disease">Liver disease</label></div>
+        </div>
+        <label for="other_major_illnesses">Other major illnesses</label>
+        <input type="text" id="other_major_illnesses">
+
+        <div class="row">
+          <div>
+            <label for="existing_conditions">Existing conditions (summary)</label>
+            <textarea id="existing_conditions"></textarea>
+          </div>
+          <div>
+            <label for="current_medications">Current medications (summary)</label>
+            <textarea id="current_medications"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="allergies">Allergies</label>
+            <textarea id="allergies"></textarea>
+          </div>
+          <div>
+            <label for="past_surgeries">Past surgeries</label>
+            <textarea id="past_surgeries"></textarea>
+          </div>
+        </div>
+        <label for="family_history">Family history</label>
+        <textarea id="family_history"></textarea>
+        <label for="lifestyle_notes">Lifestyle notes (summary)</label>
+        <textarea id="lifestyle_notes"></textarea>
+
+        <details class="section">
+          <summary>Past history details</summary>
+          <div class="section-body">
+            <label for="ph_previous_similar_illness">Previous similar illness</label>
+            <input type="text" id="ph_previous_similar_illness">
+            <label for="ph_hospitalizations">Hospitalizations</label>
+            <input type="text" id="ph_hospitalizations">
+            <label for="ph_transfusions">Blood transfusions</label>
+            <input type="text" id="ph_transfusions">
+            <label for="ph_trauma">Significant trauma</label>
+            <input type="text" id="ph_trauma">
+            <label for="ph_psychiatric_history">Psychiatric history</label>
+            <input type="text" id="ph_psychiatric_history">
+          </div>
+        </details>
+
+        <details class="section">
+          <summary>Drug &amp; allergy details</summary>
+          <div class="section-body">
+            <label for="da_recent_medications">Recent medications</label>
+            <input type="text" id="da_recent_medications">
+            <label for="da_dose_duration">Dose &amp; duration</label>
+            <input type="text" id="da_dose_duration">
+            <label for="da_compliance">Compliance</label>
+            <input type="text" id="da_compliance">
+            <label for="da_otc_herbal">OTC / herbal medications</label>
+            <input type="text" id="da_otc_herbal">
+            <label for="da_allergy_reaction_details">Allergy reaction details</label>
+            <input type="text" id="da_allergy_reaction_details">
+          </div>
+        </details>
+
+        <details class="section">
+          <summary>Personal history</summary>
+          <div class="section-body">
+            <div class="row">
+              <div><label for="pe_diet">Diet</label><input type="text" id="pe_diet"></div>
+              <div><label for="pe_appetite">Appetite</label><input type="text" id="pe_appetite"></div>
+            </div>
+            <div class="row">
+              <div><label for="pe_sleep">Sleep</label><input type="text" id="pe_sleep"></div>
+              <div><label for="pe_bowel_bladder">Bowel/bladder habits</label><input type="text" id="pe_bowel_bladder"></div>
+            </div>
+            <div class="row">
+              <div><label for="pe_smoking">Smoking/tobacco</label><input type="text" id="pe_smoking"></div>
+              <div><label for="pe_alcohol">Alcohol</label><input type="text" id="pe_alcohol"></div>
+            </div>
+            <label for="pe_other_substance_use">Other substance use</label>
+            <input type="text" id="pe_other_substance_use">
+            <div class="row">
+              <div><label for="pe_occupation">Occupation</label><input type="text" id="pe_occupation"></div>
+              <div><label for="pe_occupational_exposure">Occupational exposure</label><input type="text" id="pe_occupational_exposure"></div>
+            </div>
+            <label for="pe_activity">Physical activity</label>
+            <input type="text" id="pe_activity">
+            <label for="pe_sexual_history">Sexual history (if clinically relevant)</label>
+            <input type="text" id="pe_sexual_history">
+          </div>
+        </details>
+
+        <details class="section">
+          <summary>Social &amp; environmental history</summary>
+          <div class="section-body">
+            <div class="row">
+              <div><label for="se_living_conditions">Living conditions</label><input type="text" id="se_living_conditions"></div>
+              <div><label for="se_housing">Housing/crowding</label><input type="text" id="se_housing"></div>
+            </div>
+            <div class="row">
+              <div><label for="se_sanitation">Sanitation &amp; water</label><input type="text" id="se_sanitation"></div>
+              <div><label for="se_travel">Recent travel</label><input type="text" id="se_travel"></div>
+            </div>
+            <div class="row">
+              <div><label for="se_sick_contacts">Sick contacts</label><input type="text" id="se_sick_contacts"></div>
+              <div><label for="se_pets">Pets/animals</label><input type="text" id="se_pets"></div>
+            </div>
+            <label for="se_socioeconomic">Socioeconomic factors</label>
+            <input type="text" id="se_socioeconomic">
+          </div>
+        </details>
+
+        <details class="section">
+          <summary>Menstrual &amp; obstetric history (only if relevant)</summary>
+          <div class="section-body">
+            <div class="row">
+              <div><label for="mo_menarche_age">Menarche age</label><input type="number" id="mo_menarche_age"></div>
+              <div><label for="mo_last_menstrual_period">LMP</label><input type="date" id="mo_last_menstrual_period"></div>
+            </div>
+            <div class="row">
+              <div><label for="mo_cycle_regularity">Cycle regularity</label><input type="text" id="mo_cycle_regularity"></div>
+              <div><label for="mo_bleeding_duration_and_amount">Duration &amp; amount</label><input type="text" id="mo_bleeding_duration_and_amount"></div>
+            </div>
+            <div class="checkbox-grid">
+              <div class="checkbox-row"><input type="checkbox" id="mo_dysmenorrhea"><label for="mo_dysmenorrhea">Dysmenorrhea</label></div>
+              <div class="checkbox-row"><input type="checkbox" id="mo_menopause"><label for="mo_menopause">Menopausal</label></div>
+            </div>
+            <div class="row">
+              <div><label for="mo_gravida">Gravida</label><input type="number" id="mo_gravida"></div>
+              <div><label for="mo_para">Para</label><input type="number" id="mo_para"></div>
+              <div><label for="mo_abortions">Abortions</label><input type="number" id="mo_abortions"></div>
+              <div><label for="mo_living_children">Living children</label><input type="number" id="mo_living_children"></div>
+            </div>
+            <label for="mo_previous_pregnancy_outcomes">Previous pregnancy outcomes</label>
+            <input type="text" id="mo_previous_pregnancy_outcomes">
+            <label for="mo_pregnancy_complications">Pregnancy complications</label>
+            <input type="text" id="mo_pregnancy_complications">
+            <label for="mo_contraception">Contraceptive history</label>
+            <input type="text" id="mo_contraception">
+            <label for="mo_complaints">Complaints</label>
+            <input type="text" id="mo_complaints">
+          </div>
+        </details>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:20px;" id="save-btn">
+          Save Medical History
+        </button>
+      </form>
+    </div>
+
+  </div>
+
+  <script type="module" src="assets/js/medical-history.js"></script>
+</body>
+</html>
