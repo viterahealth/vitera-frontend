@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VITERA</title>
+</head>
+<body>
+  <script type="module">
+    import { isLoggedIn } from "./assets/js/session.js";
+    window.location.replace(isLoggedIn() ? "dashboard.html" : "login.html");
+  </script>
+  <noscript>JavaScript is required to use VITERA.</noscript>
+</body>
+</html>

@@ -1,0 +1,75 @@
+/* ============================================================
+   VITERA theme -- colors pulled from the logo (leaf gradient +
+   navy wordmark), plus base typography. layout.css builds the
+   actual page structure on top of these variables.
+   ============================================================ */
+
+:root {
+  /* leaf gradient (dark forest green -> lime) */
+  --vt-green-900: #163d24;
+  --vt-green-700: #1f6b3c;
+  --vt-green-500: #3f9c4f;
+  --vt-green-300: #8cc63f;
+  --vt-green-100: #eaf6e4;
+
+  /* wordmark navy */
+  --vt-navy-900: #12294f;
+  --vt-navy-700: #1c3f73;
+
+  /* accent dot on the logo's "A" */
+  --vt-accent: #37b34a;
+
+  /* neutrals */
+  --vt-bg: #f5faf6;
+  --vt-surface: #ffffff;
+  --vt-text: #1a2b21;
+  --vt-muted: #60706a;
+  --vt-border: #dee8e0;
+
+  /* status */
+  --vt-danger: #c1392b;
+  --vt-danger-bg: #fbeae8;
+  --vt-success: #2f8f52;
+
+  --vt-radius: 12px;
+  --vt-radius-sm: 8px;
+  --vt-shadow: 0 2px 12px rgba(18, 41, 79, 0.07);
+
+  --vt-font: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--vt-bg);
+  color: var(--vt-text);
+  font-family: var(--vt-font);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  color: var(--vt-navy-900);
+  margin: 0 0 8px;
+}
+
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.1rem; font-weight: 600; }
+h3 { font-size: 1rem; font-weight: 600; }
+
+p.subtitle {
+  color: var(--vt-muted);
+  margin: 0 0 20px;
+  font-size: 0.95rem;
+}
+
+a {
+  color: var(--vt-green-700);
+}

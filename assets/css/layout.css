@@ -1,0 +1,383 @@
+/* ============================================================
+   VITERA layout -- structural pieces shared by every page.
+   Depends on theme.css being loaded first (uses its variables).
+   ============================================================ */
+
+/* ---------- navbar ---------- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--vt-surface);
+  border-bottom: 1px solid var(--vt-border);
+  box-shadow: var(--vt-shadow);
+}
+
+.navbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .brand img {
+  height: 32px;
+  width: auto;
+}
+
+.navbar .brand .wordmark {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--vt-navy-900);
+  letter-spacing: 0.04em;
+}
+
+.navbar .brand .wordmark .dot {
+  color: var(--vt-accent);
+}
+
+.navbar .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar .user-chip {
+  font-size: 0.88rem;
+  color: var(--vt-muted);
+}
+
+.navbar .user-chip strong {
+  color: var(--vt-text);
+}
+
+.navbar .role-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--vt-green-100);
+  color: var(--vt-green-700);
+  text-transform: uppercase;
+}
+
+/* ---------- layout containers ---------- */
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 28px 18px 60px;
+}
+
+.container.narrow {
+  max-width: 460px;
+}
+
+.card {
+  background: var(--vt-surface);
+  border: 1px solid var(--vt-border);
+  border-radius: var(--vt-radius);
+  box-shadow: var(--vt-shadow);
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--vt-radius-sm);
+  padding: 11px 20px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  font-family: var(--vt-font);
+  transition: opacity 0.15s ease, transform 0.05s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--vt-green-700), var(--vt-green-500));
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--vt-green-700);
+  border: 1.5px solid var(--vt-green-700);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: var(--vt-green-100);
+}
+
+.btn-text {
+  background: transparent;
+  color: var(--vt-muted);
+  padding: 6px 8px;
+  font-weight: 500;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ---------- forms ---------- */
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--vt-muted);
+  margin: 14px 0 5px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--vt-border);
+  border-radius: var(--vt-radius-sm);
+  font-size: 1rem;
+  font-family: var(--vt-font);
+  background: #fff;
+  color: var(--vt-text);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--vt-green-500);
+  box-shadow: 0 0 0 3px var(--vt-green-100);
+}
+
+textarea {
+  min-height: 76px;
+  resize: vertical;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+.row > * {
+  flex: 1;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.checkbox-row input {
+  width: auto;
+}
+
+.checkbox-row label {
+  margin: 0;
+  color: var(--vt-text);
+  font-weight: 400;
+}
+
+/* ---------- search ---------- */
+.search-box input {
+  font-size: 1.02rem;
+  padding: 12px 14px;
+}
+
+.search-results {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--vt-border);
+  border-radius: var(--vt-radius-sm);
+  cursor: pointer;
+  background: #fbfdfb;
+}
+
+.result-row:hover {
+  border-color: var(--vt-green-500);
+}
+
+.result-row .name {
+  font-weight: 600;
+  color: var(--vt-text);
+}
+
+.result-row .meta {
+  font-size: 0.82rem;
+  color: var(--vt-muted);
+  margin-top: 2px;
+}
+
+.empty-hint {
+  color: var(--vt-muted);
+  font-size: 0.9rem;
+  padding: 6px 2px;
+}
+
+/* ---------- status pill ---------- */
+.status-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--vt-green-100);
+  color: var(--vt-green-700);
+  white-space: nowrap;
+}
+
+/* ---------- selected patient header (used on every stall page) ---------- */
+.patient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--vt-border);
+}
+
+.patient-header .code {
+  color: var(--vt-muted);
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+/* ---------- dashboard stall grid ---------- */
+.stall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.stall-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background: var(--vt-surface);
+  border: 1px solid var(--vt-border);
+  border-radius: var(--vt-radius);
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.05s ease;
+}
+
+.stall-card:hover {
+  border-color: var(--vt-green-500);
+}
+
+.stall-card:active {
+  transform: translateY(1px);
+}
+
+.stall-card .stall-title {
+  font-weight: 700;
+  color: var(--vt-navy-900);
+  font-size: 1.02rem;
+}
+
+.stall-card .stall-desc {
+  color: var(--vt-muted);
+  font-size: 0.86rem;
+}
+
+/* ---------- camp selector ---------- */
+.camp-select-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.camp-select-row select {
+  flex: 1;
+}
+
+/* ---------- simple result-row list (register confirmations, prescriptions) ---------- */
+.rx-existing {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--vt-border);
+  font-size: 0.92rem;
+}
+
+.rx-existing .rx-name {
+  font-weight: 600;
+}
+
+.rx-existing .rx-detail {
+  color: var(--vt-muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- toast ---------- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--vt-navy-900);
+  color: #fff;
+  padding: 11px 20px;
+  border-radius: var(--vt-radius-sm);
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  box-shadow: var(--vt-shadow);
+  z-index: 100;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+.toast.error {
+  background: var(--vt-danger);
+}
+
+/* ---------- error message ---------- */
+.error-msg {
+  color: var(--vt-danger);
+  background: var(--vt-danger-bg);
+  border-radius: var(--vt-radius-sm);
+  padding: 9px 12px;
+  font-size: 0.88rem;
+  margin-top: 12px;
+}
+
+.hidden {
+  display: none !important;
+}

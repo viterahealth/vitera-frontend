@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check-In — VITERA</title>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+  <div class="navbar">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="VITERA">
+      <span class="wordmark">VITERA<span class="dot">.</span></span>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-text" href="dashboard.html">&larr; Dashboard</a>
+      <button class="btn btn-text" id="logout-btn">Log out</button>
+    </div>
+  </div>
+
+  <div class="container narrow">
+
+    <div class="card">
+      <h1>Check-In</h1>
+      <p class="subtitle">Search for a pre-registered patient and mark them as arrived.</p>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search name, phone, or code…">
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+
+    <div class="card hidden" id="patient-card">
+      <div class="patient-header">
+        <div>
+          <h2 id="p-name" style="color:var(--vt-text); margin-bottom:2px;"></h2>
+          <div class="code" id="p-meta"></div>
+        </div>
+        <span class="status-pill" id="p-status"></span>
+      </div>
+      <button class="btn btn-primary btn-block" id="checkin-btn">Mark as Checked In</button>
+    </div>
+
+  </div>
+
+  <script type="module" src="assets/js/checkin.js"></script>
+</body>
+</html>
